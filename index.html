@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator Prompt Website Kalkulator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input[type="text"], select, textarea { width: 100%; padding: 8px; }
+    input[type="file"] { margin-top: 5px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    .output { margin-top: 30px; white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Form Generator Prompt Website Kalkulator Digital</h2>
+  <form id="promptForm">
+    <div class="form-group">
+      <label for="pelajaran">Nama Pelajaran</label>
+      <select id="pelajaran" name="pelajaran" required>
+        <option value="Matematika">Matematika</option>
+        <option value="Kimia">Kimia</option>
+        <option value="Fisika">Fisika</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="kategori">Kategori Materi</label>
+      <input type="text" id="kategori" name="kategori" placeholder="Contoh: Aljabar, Logika, Newton..." required>
+    </div>
+
+    <div class="form-group">
+      <label for="tema">Tema Warna Website</label>
+      <select id="tema" name="tema" required>
+        <option>Dusty Rose</option>
+        <option>Sage Green</option>
+        <option>Champagne / Gold</option>
+        <option>Ivory / Off White</option>
+        <option>Blush Pink</option>
+        <option>Lavender / Lilac</option>
+        <option>Emerald Green</option>
+        <option>Navy Blue</option>
+        <option>Terracotta / Burnt Orange</option>
+        <option>Maroon / Wine Red</option>
+        <option>Peach / Coral</option>
+        <option>Black & White</option>
+        <option>Dusty Blue</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="gaya">Gaya Visual Website</label>
+      <select id="gaya" name="gaya" required>
+        <option>Minimalis elegan</option>
+        <option>Rustic</option>
+        <option>Floral / Botanical</option>
+        <option>Modern glam</option>
+        <option>Classic / Traditional</option>
+        <option>Bohemian</option>
+        <option>Cute & Fun</option>
+        <option>Kultural / Adat</option>
+        <option>Dark mode / Moody</option>
+        <option>Monokrom hitam putih</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Elemen yang Ditampilkan</label>
+      <input type="checkbox" id="gambarSoal" name="elemen" value="Gambar Soal"> Gambar Soal <br>
+      <input type="checkbox" id="hasilKalkulator" name="elemen" value="Hasil Tampilan Kalkulatornya"> Hasil Tampilan Kalkulatornya <br>
+      <input type="checkbox" id="kolomSoal" name="elemen" value="Kolom Soal"> Kolom Soal (jika soal Cerita)<br>
+      <input type="checkbox" id="penjelasan" name="elemen" value="Penjelasan Penyelesaian"> Penjelasan Penyelesaian <br>
+      <label for="gambarUpload">Upload Gambar Soal (jika ada):</label>
+      <input type="file" id="gambarUpload" name="gambarUpload">
+    </div>
+
+    <button type="button" onclick="generatePrompt()">Buat Prompt</button>
+  </form>
+
+  <div class="output" id="outputPrompt"></div>
+
+  <script>
+    function generatePrompt() {
+      const pelajaran = document.getElementById('pelajaran').value;
+      const kategori = document.getElementById('kategori').value;
+      const tema = document.getElementById('tema').value;
+      const gaya = document.getElementById('gaya').value;
+      const elemenNodes = document.querySelectorAll('input[name="elemen"]:checked');
+
+      const elemen = Array.from(elemenNodes).map(e => e.value).join(', ');
+
+      const prompt = `Saya ingin kamu bertindak sebagai seorang *frontend developer profesional* yang membuat website Kalkulator Digital multifungsi. Website ini harus memiliki desain yang modern, elegan, dan responsif (mobile-first). Gunakan efek animasi halus saat scroll, parallax ringan, serta transisi yang lembut.
+
+Website ini mencakup:
+- Pelajaran: ${pelajaran}
+- Materi: ${kategori}
+- Tema Warna: ${tema}
+- Gaya Visual: ${gaya}
+- Elemen yang ditampilkan: ${elemen}
+
+Buatkan struktur, tampilan, dan komponen antarmuka yang mendukung fungsi kalkulasi dan visualisasi materi tersebut.`;
+
+      document.getElementById('outputPrompt').textContent = prompt;
+    }
+  </script>
+</body>
+</html>
